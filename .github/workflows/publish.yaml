@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Packaging Workflow
+name: Packaging Workflow 
 
 on:
   push:
@@ -29,24 +29,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-          server-id: github
-          settings-path: ${{ github.workspace }}
 
-      - name: Configure Maven settings for GitHub Packages
-        run: |
-          cat > ${{ github.workspace }}/.github/maven-settings.xml <<EOF
-          <settings>
-            <servers>
-              <server>
-                <id>github</id>
-                <username>${{ github.actor }}</username>
-                <password>${{ secrets.GITHUB_TOKEN }}</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
       - name: Package
         run: mvn clean package
 
-      - name: Publish GH
-        run: mvn deploy --settings .github/maven-settings.xml
+      - name: Publish GH package
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
