@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.geekychetan.user;
 
 option java_package = "com.geekychetan.user";
+option java_multiple_files = true;
 
 enum ResponseStatus {
   RESP_UNKNOWN = 0;

@@ -5,7 +5,7 @@
 
   <groupId>com.geekychetan</groupId>
   <artifactId>gc-protobufs</artifactId>
-  <version>1.0.0-BETA</version>
+  <version>1.0.1-BETA</version>
 
   <name>gc-protobufs</name>
   <!-- FIXME change it to the project's website -->
@@ -66,6 +66,10 @@
           <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
           <pluginId>grpc-java</pluginId>
           <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+          <protoSourceRoot>${project.basedir}</protoSourceRoot>
+          <includes>
+            <include>user.proto</include>
+          </includes>
         </configuration>
         <executions>
           <execution>
