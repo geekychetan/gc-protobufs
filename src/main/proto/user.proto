@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package com.geekychetan.user;
+
+option java_package = "com.geekychetan.user";
+
+enum ResponseStatus {
+  RESP_UNKNOWN = 0;
+  RESP_SUCCESS = 1;
+  RESP_FAILURE = 2;
+}
+
+message User {
+  string name = 1;
+  int32 age = 2;
+  Address address = 3;
+}
+
+message Address {
+  string street = 1;
+  string city = 2;
+}
+
+service UserService {
+  rpc GetUser(User) returns (User);
+}
